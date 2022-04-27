@@ -1,0 +1,110 @@
+{
+  "version": "2.0.0",
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "cmd.exe",
+        "args": [
+          "/C",
+          "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat",
+          "&&"
+        ]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "cl.exe build active file",
+      "command": "cl.exe",
+      "args": [
+
+        "/Zi",
+        "/EHsc",
+        "/MDd",
+        "/nologo",
+        "/std:c++17",
+
+        "/I${workspaceFolder}/libraries/glfw-3.3.6.bin.WIN64/include",
+        "/I${workspaceFolder}/libraries/glm",
+        "/I${workspaceFolder}/libraries/vulkan/Include",
+
+        "${workspaceFolder}\\src\\*.cpp",
+        "vulkan-1.lib",
+        "glfw3.lib",
+        "user32.lib",
+        "gdi32.lib",
+        "shell32.lib",
+        
+        "/Fd:",
+        "\"${workspaceFolder}\\build/\"",
+        "/Fo:",
+        "\"${workspaceFolder}\\build/\"",
+
+        "/Fe:",
+        "${workspaceFolder}\\App.exe",
+
+        "/link",
+          "/LIBPATH:${workspaceFolder}\\libraries\\vulkan\\Lib",
+          "/LIBPATH:${workspaceFolder}\\libraries\\glfw-3.3.6.bin.WIN64\\lib-vc2022",
+          "/NODEFAULTLIB:MSVCRT",
+          "/NODEFAULTLIB:LIBCMT"
+      ],
+      "problemMatcher": [
+        "$msCompile"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true,
+      },
+      "dependsOn": [
+        "build vertex shaders",
+        "build fragment shaders",
+      ]
+    },
+    {
+      "type": "shell",
+      "label": "build vertex shaders",
+      "command": "C:/VulkanSDK/1.2.189.0/Bin/glslc.exe",
+      "args": [
+        "${workspaceFolder}/shaders/shader.vert",
+        "-o",
+        "${workspaceFolder}/build/vert.spv",
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "build fragment shaders",
+      "command": "C:/VulkanSDK/1.2.189.0/Bin/glslc.exe",
+      "args": [
+        "${workspaceFolder}/shaders/shader.frag",
+        "-o",
+        "${workspaceFolder}/build/frag.spv",
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    }
+  ]
+}

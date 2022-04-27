@@ -1,0 +1,6 @@
+build/
+libraries/
+*.ilk
+*.exe
+*.pdb
+*.spv
