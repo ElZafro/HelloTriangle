@@ -6,7 +6,7 @@
         "executable": "cmd.exe",
         "args": [
           "/C",
-          "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat",
+          "C:/Program^ Files/Microsoft^ Visual^ Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat",
           "&&"
         ]
       }
@@ -27,9 +27,9 @@
 
         "/I${workspaceFolder}/libraries/glfw-3.3.6.bin.WIN64/include",
         "/I${workspaceFolder}/libraries/glm",
-        "/I${workspaceFolder}/libraries/vulkan/Include",
+        "/IC:/VulkanSDK/1.2.189.0/Include",
 
-        "${workspaceFolder}\\src\\*.cpp",
+        "${workspaceFolder}/src/*.cpp",
         "vulkan-1.lib",
         "glfw3.lib",
         "user32.lib",
@@ -42,11 +42,11 @@
         "\"${workspaceFolder}\\build/\"",
 
         "/Fe:",
-        "${workspaceFolder}\\App.exe",
+        "${workspaceFolder}/App.exe",
 
         "/link",
-          "/LIBPATH:${workspaceFolder}\\libraries\\vulkan\\Lib",
-          "/LIBPATH:${workspaceFolder}\\libraries\\glfw-3.3.6.bin.WIN64\\lib-vc2022",
+          "/LIBPATH:${workspaceFolder}/libraries/glfw-3.3.6.bin.WIN64/lib-vc2022",
+          "/LIBPATH:C:/VulkanSDK/1.2.189.0/Lib",
           "/NODEFAULTLIB:MSVCRT",
           "/NODEFAULTLIB:LIBCMT"
       ],

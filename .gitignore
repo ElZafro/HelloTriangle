@@ -1,5 +1,4 @@
 build/
-libraries/
 *.ilk
 *.exe
 *.pdb
